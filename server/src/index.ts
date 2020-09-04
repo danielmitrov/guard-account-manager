@@ -4,8 +4,9 @@ import http from 'http';
 import path from 'path';
 import cors from 'cors';
 
+import keyStorage from './storage/keys';
+import {generateKeyPair} from './utils/keys';
 import apiRouter from './routes';
-
 
 const app = express();
 const server = http.createServer(app);
@@ -21,9 +22,16 @@ app.get('*', function(req, res) {
     res.sendFile(path.resolve('../client/dist/index.html'));
 });
 
-server.listen(port, () => {
-    console.log(`Server is listening on port ${port}.`);
-});
+async function start() {
+    const startKeys = await generateKeyPair();
+    await keyStorage.saveKeys(startKeys);
+
+    server.listen(port, () => {
+        console.log(`Server is listening on port ${port}.`);
+    });
+}
+
+start();
 
 export default {
     app,
