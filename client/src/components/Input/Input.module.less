@@ -1,0 +1,47 @@
+@import '../../theme/palette.less';
+
+@input-padding: 1em;
+
+
+.container {
+    margin: .5em 0;
+    width: 100%;
+    display: flex;
+    position: relative;
+
+    input {
+        border: 0;
+        outline: solid 1px lighten(@text-color, 40%);
+        border-radius: .25em;
+        padding: @input-padding;
+        transition: .2s ease outline;
+        width: 100%;
+
+        &:hover {
+            outline-color: @primary;
+        }
+
+        &:focus {
+            outline-width: 2px;
+            outline-color: @primary;
+        }
+
+        &:focus, &:not(.empty) {
+            + .label {
+                color: @primary;
+                font-size: .75em;
+                top: -.75em;
+                background-color: #fff;
+                padding: 0 .5em;
+            }
+        }
+    }
+
+    .label {
+        position: absolute;
+        top: @input-padding;
+        left: @input-padding;
+        pointer-events: none;
+        transition: .2s ease all;
+    }
+}

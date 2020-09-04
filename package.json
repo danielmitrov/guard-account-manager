@@ -1,0 +1,26 @@
+{
+  "name": "guard",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "cd server && npm start",
+    "postinstall": "cd common && npm install && cd ../client && npm install && cd ../server && npm install",
+    "build": "cd common && npm run build && cd ../client && npm run build-prod && cd ../server && npm run build",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm start",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\" --names \"SERVER,CLIENT\" -c \"bgRed.bold,bgBlue.bold\"",
+    "heroku-prebuild": "npm install --dev"
+  },
+  "dependencies": {
+    "concurrently": "^5.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.18.0",
+    "eslint-plugin-react-hooks": "^1.7.0"
+  },
+  "main": "./server/dist/index.js"
+}

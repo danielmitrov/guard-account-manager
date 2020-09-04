@@ -1,0 +1,22 @@
+@import '../../theme/palette.less';
+
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    padding: 1em;
+    margin: .5em 0;
+
+    background-color: @primary;
+    color: @text-color-on-primary;
+    cursor: pointer;
+    outline: 0;
+    transition: .2s ease background;
+
+    &:focus {
+        background: lighten(@primary, 10%);
+    }
+}
