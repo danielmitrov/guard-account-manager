@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
-
 import { Router } from 'express';
+
+import keyStorage from '../storage/keys';
 
 
 const router = Router();
@@ -14,7 +15,7 @@ function isValidCredentials(credentials: {username: string, password: string}): 
     return false;
 }
 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
     const {username, password} = req.body;
 
     if (!isValidCredentials({username, password})) {
@@ -22,10 +23,16 @@ router.post('/login', (req, res) => {
     }
 
     const data = {username};
+    const keys = await keyStorage.getKeys();
+
+    const token = jwt.sign(data, keys.privateKey, {
+        algorithm: 'RS256',
+        keyid: await keyStorage.getKeyId(),
+    });
 
     res.send({
         isValid: true,
-        token: jwt.sign(data, 'MYSUPERDUPERSECRET'),
+        token,
     });
 });
 
