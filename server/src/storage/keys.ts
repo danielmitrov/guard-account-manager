@@ -9,7 +9,6 @@ class KeyStorage {
     constructor(keys: KeyPair | null = null) {
         this.saveKeys(keys);
     }
-    
 
     async saveKeys(keys: KeyPair) {
         this.keys = keys;

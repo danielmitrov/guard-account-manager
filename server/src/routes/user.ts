@@ -17,7 +17,7 @@ function isValidCredentials(credentials: {username: string, password: string}): 
 
 router.post('/login', async (req, res) => {
     const {username, password} = req.body;
-
+    
     if (!isValidCredentials({username, password})) {
         return res.send({isValid: false});
     }
