@@ -25,10 +25,8 @@ router.post('/login', async (req, res) => {
             keyid: await keyStorage.getKeyId(),
         });
 
-        res.send({
-            isValid: true,
-            token,
-        });
+        res.cookie('token', token, {httpOnly: true});
+        res.send({isValid: true, token});
     } catch (e) {
         if (e instanceof UserNotFoundError) {
             // We don't want to send an 404 so the user won't know if
