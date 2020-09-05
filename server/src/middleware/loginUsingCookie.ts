@@ -16,6 +16,7 @@ export default async function loginUsingCookie(req: Request, res: Response, next
     jwt.verify(token, keys.publicKey, function(err) {
         if (err) {
             res.cookie('token', '', {maxAge: 0});
+            return next();
         }
 
         const redirectUrl = new URL(decodeURIComponent(req.query.continue));
