@@ -6,6 +6,8 @@ import cors from 'cors';
 
 import keyStorage from './storage/keys';
 import {generateKeyPair} from './utils/keys';
+
+import middleware from './middleware';
 import apiRouter from './routes';
 
 const app = express();
@@ -18,6 +20,7 @@ app.use(bodyParser.json());
 app.use('/api/v1', apiRouter);
 
 app.use(express.static('../client/dist'));
+app.get('/login', middleware.validateApp);
 app.get('*', function(req, res) {
     res.sendFile(path.resolve('../client/dist/index.html'));
 });

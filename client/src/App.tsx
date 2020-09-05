@@ -13,7 +13,7 @@ export default function App() {
         </Helmet>
         <Router>
             <Switch>
-                <Route path="/">
+                <Route path="/login">
                     <LoginPage/>
                 </Route>
             </Switch>

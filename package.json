@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "cd server && npm start",
-    "postinstall": "cd common && npm install && cd ../client && npm install && cd ../server && npm install",
-    "build": "cd common && npm run build && cd ../client && npm run build-prod && cd ../server && npm run build",
+    "postinstall": "cd client && npm install && cd ../server && npm install",
+    "build": "cd client && npm run build-prod && cd ../server && npm run build",
     "dev:server": "cd server && npm run dev",
     "dev:client": "cd client && npm start",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\" --names \"SERVER,CLIENT\" -c \"bgRed.bold,bgBlue.bold\"",

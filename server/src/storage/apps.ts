@@ -1,4 +1,5 @@
 import {App} from '../types/apps';
+import {AppNotFoundError} from '../errors';
 
 
 class AppsStorage {
@@ -20,8 +21,17 @@ class AppsStorage {
     async getApps(): Promise<App[]> {
         return this.apps;
     }
-}
 
+    async getAppByName(appName: string): Promise<App> {
+        const app = this.apps.find(app => app.appName === appName);
+
+        if (!app) {
+            throw new AppNotFoundError('App not found');
+        }
+
+        return app;
+    }
+}
 
 const appsStorage = new AppsStorage();
 
