@@ -30,6 +30,11 @@ function LoginPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    function submitForm() {
+        const credentials = {username, password}
+        validateCredentials(credentials, () => setIsInvalidCredentials(true));
+    }
+
     return <div className={classes.container}>
         <div className={classes.content}>
             <div className={classes.fingerprint}><Fingerprint /></div>
@@ -37,23 +42,20 @@ function LoginPage() {
             <Input
                 value={username}
                 onChange={e => setUsername(e.target.value)}
+                submitForm={submitForm}
                 label="Username"
             />
             <Input
                 value={password}
                 onChange={e => setPassword(e.target.value)}
+                submitForm={submitForm}
                 type="password"
                 label="Password"
             />
 
             <Button
                 label="Login"
-                onClick={() => {
-                    validateCredentials(
-                        {username, password},
-                        () => setIsInvalidCredentials(true)
-                    );
-                }}
+                onClick={submitForm}
             />
             {isInvalidCredentials ? <InvalidCredentials /> : <div className={classes.placeholder} />}
         </div>
