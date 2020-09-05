@@ -11,7 +11,7 @@ export default async function validateApp(req: Request, res: Response, next: Nex
         }
 
         const app = await appStorage.getAppByName(req.query.appName);
-        const redirectUrl = new URL(req.query.continue);
+        const redirectUrl = new URL(decodeURIComponent(req.query.continue));
 
         if (redirectUrl.hostname !== app.appDomain) {
             return res.status(400).send({
