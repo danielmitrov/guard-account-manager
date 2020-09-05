@@ -10,6 +10,10 @@
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\" --names \"SERVER,CLIENT\" -c \"bgRed.bold,bgBlue.bold\"",
     "heroku-prebuild": "npm install --dev"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielmitrov/guard-account-manager.git"
+  },
   "dependencies": {
     "concurrently": "^5.0.2"
   },
