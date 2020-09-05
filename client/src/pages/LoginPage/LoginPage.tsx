@@ -15,7 +15,7 @@ async function validateCredentials({username, password}, setInvalidCredentials) 
     
     if (isValid) {
         const url = new URL(window.location.href);
-        const redirectBaseUrl = new URL(url.searchParams.get('continue'));
+        const redirectBaseUrl = new URL(decodeURIComponent(url.searchParams.get('continue')));
 
         redirectBaseUrl.searchParams.set('token', token);
         window.location.replace(redirectBaseUrl.href);
