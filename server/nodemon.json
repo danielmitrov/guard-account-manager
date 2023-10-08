@@ -1,6 +1,1 @@
-{
-    "watch": ["src", "../common/src"],
-    "ext": "ts",
-    "ignore": ["src/dist"],
-    "exec": "ts-node src/index.ts"
-  }
+*
