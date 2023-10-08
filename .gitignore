@@ -1,8 +1,1 @@
-**/dist/*
-!client/dist/index.html
-**/node_modules/
-**/build/*
-*.tsbuildinfo
-
-# dev
-.idea/
+*
